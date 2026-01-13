@@ -28,7 +28,7 @@
   },
   // 3. Ensure dependencies are synced every time the container is built/started
   "postCreateCommand": "uv sync",
-  "postStartCommand": "nohup bash -c .devcontainer/entrypoint.sh &> /tmp/devcontainer.log &"
+  "postStartCommand": "nohup bash -c .devcontainer/entrypoint.sh &> devcontainer.log &"
   
   // 4. Run as root (or match your Dockerfile user) to ensure Xvfb has permissions
   // "remoteUser": "vscode",
