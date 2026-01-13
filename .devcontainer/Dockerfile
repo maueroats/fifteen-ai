@@ -11,8 +11,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         # Common dependencies for GUI apps (like Chrome/Firefox)
         libnss3 \
         libgbm1 \
-        libasound2 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+        libasound2 
+#    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 2. Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
@@ -31,4 +31,4 @@ WORKDIR /workspaces/app
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+# ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

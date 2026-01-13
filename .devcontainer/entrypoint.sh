@@ -1,20 +1,27 @@
 #!/bin/bash
+
 set -e
 
 LOGDIR=/tmp/logs
 mkdir $LOGDIR
 
+echo "Beginning entrypoint script"
+
 # 1. Start Xvfb (Virtual Framebuffer)
-nohup Xvfb $DISPLAY -screen 0 $RESOLUTION &> $LOGDIR/Xvfb.log &
+Xvfb $DISPLAY -screen 0 $RESOLUTION &> $LOGDIR/Xvfb.log &
+sleep 1
 
 # 2. Start Window Manager (Fluxbox) so windows have borders/controls
-nohup fluxbox &> $LOGDIR/fluxbox.log &
+fluxbox &> $LOGDIR/fluxbox.log &
+sleep 1
 
 # 3. Start VNC Server (No password for dev, mapped to display :0)
-nohup x11vnc -display $DISPLAY  -ncache 10 -nopw -forever -quiet &> $LOGDIR/x11vnc.log &
+x11vnc -display $DISPLAY  -ncache 10 -nopw -forever -quiet &> $LOGDIR/x11vnc.log &
+sleep 1
 
 # 4. Start noVNC bridge (Maps VNC to WebSockets for the browser)
-nohup websockify --web /usr/share/novnc 6080 localhost:5900 &> $LOGDIR/websockify.log &
+websockify --web /usr/share/novnc 6080 localhost:5900 &> $LOGDIR/websockify.log &
+sleep 1
 
 echo "Display ready! Access at http://localhost:6080"
 
