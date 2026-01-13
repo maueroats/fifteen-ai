@@ -20,15 +20,15 @@
         "python.testing.pytestEnabled": true
       },
       "extensions": [
-        "ms-python.python",
-        "charliermarsh.ruff",
-        "tamasfe.even-better-toml"
+       // "ms-python.python",
+       // "charliermarsh.ruff",
+       // "tamasfe.even-better-toml"
       ]
     }
   },
   // 3. Ensure dependencies are synced every time the container is built/started
   "postCreateCommand": "uv sync",
-  "postStartCommand": "nohup bash -c .devcontainer/entrypoint.sh &> devcontainer.log &"
+  "postStartCommand": "nohup /usr/local/bin/entrypoint.sh"
   
   // 4. Run as root (or match your Dockerfile user) to ensure Xvfb has permissions
   // "remoteUser": "vscode",

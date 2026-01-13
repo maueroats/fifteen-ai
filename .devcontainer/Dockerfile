@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/python:3.12
+FROM mcr.microsoft.com/devcontainers/universal:5
 
 # 1. Install System Dependencies for GUI and VNC
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -11,8 +11,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         # Common dependencies for GUI apps (like Chrome/Firefox)
         libnss3 \
         libgbm1 \
-        libasound2 
-#    && apt-get clean && rm -rf /var/lib/apt/lists/*
+        && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+#libasound2 
 
 # 2. Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
@@ -30,5 +31,8 @@ WORKDIR /workspaces/app
 # We'll use a script to launch everything in order
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+
+COPY debugging.sh /usr/local/bin/debugging.sh
+RUN chmod +x /usr/local/bin/debugging.sh 
 
 # ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
