@@ -1,5 +1,5 @@
 {
-  "name": "Python GUI (uv + noVNC)",
+  "name": "Python GUI",
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -28,6 +28,7 @@
   },
   // 3. Ensure dependencies are synced every time the container is built/started
   "postCreateCommand": "uv sync",
+  "postStartCommand": "/bin/bash .devcontainer/entrypoint.sh",
   
   // 4. Run as root (or match your Dockerfile user) to ensure Xvfb has permissions
   "remoteUser": "vscode",
