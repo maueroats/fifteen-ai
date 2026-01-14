@@ -15,8 +15,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 #libasound2 
 
-# 2. Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+# 2. Install uv (done byu features in devcontainer.json)
+# COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # 3. Setup noVNC workspace
 # Link noVNC to the default location websockify expects

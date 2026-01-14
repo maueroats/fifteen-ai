@@ -16,7 +16,7 @@ fluxbox &> $LOGDIR/fluxbox.log &
 sleep 1
 
 # 3. Start VNC Server (No password for dev, mapped to display :0)
-x11vnc -display $DISPLAY  -ncache 10 -nopw -forever -quiet &> $LOGDIR/x11vnc.log &
+x11vnc -display $DISPLAY  -ncache 10 -usepw -forever -quiet &> $LOGDIR/x11vnc.log &
 sleep 1
 
 # 4. Start noVNC bridge (Maps VNC to WebSockets for the browser)
