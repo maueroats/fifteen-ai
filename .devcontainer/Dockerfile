@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/devcontainers/python:3
 
 # 1. Install System Dependencies for GUI and VNC
-# (removed apt-get update to try to keep image size down)
-RUN export DEBIAN_FRONTEND=noninteractive \
+RUN apt-get update \
+    && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
         xvfb \
         x11vnc \
