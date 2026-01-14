@@ -2,10 +2,15 @@
 
 set -e
 
+echo "Beginning entrypoint script"
+
+
 LOGDIR=/tmp/logs
 mkdir $LOGDIR
 
-echo "Beginning entrypoint script"
+mkdir -p ~/.vnc
+chmod 700 ~/.vnc
+x11vnc -storepasswd "${VNC_PASSWORD}" ~/.vnc/passwd
 
 # 1. Start Xvfb (Virtual Framebuffer)
 Xvfb $DISPLAY -screen 0 $RESOLUTION &> $LOGDIR/Xvfb.log &
