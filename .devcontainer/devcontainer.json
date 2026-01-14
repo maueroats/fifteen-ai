@@ -33,7 +33,12 @@
   },
   // 3. Ensure dependencies are synced every time the container is built/started
   "postCreateCommand": "uv sync",
-  "postStartCommand": "nohup /usr/local/bin/entrypoint.sh"
+  "postStartCommand": [
+    "mkdir -p ~/.vnc",
+    "chmod 700 ~/.vnc",
+    "x11vnc -storepasswd \"${VNC_PASSWORD}\" ~/.vnc/passwd",
+    "nohup /usr/local/bin/entrypoint.sh"
+  ]
   
   // 4. Run as root (or match your Dockerfile user) to ensure Xvfb has permissions
   // "remoteUser": "vscode",
