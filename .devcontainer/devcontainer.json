@@ -4,7 +4,7 @@
     "dockerfile": "Dockerfile"
   },
   "features": {
-    "ghcr.io/astral-sh/devcontainer-features/uv:1": {}
+    "ghcr.io/devcontainers-extra/features/uv:1": {}
   },
 
   // 1. Map the noVNC port so you can see the GUI in your browser
