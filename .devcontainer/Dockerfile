@@ -1,7 +1,8 @@
-FROM mcr.microsoft.com/devcontainers/universal:5
+FROM mcr.microsoft.com/devcontainers/python:3
 
 # 1. Install System Dependencies for GUI and VNC
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+# (removed apt-get update to try to keep image size down)
+RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
         xvfb \
         x11vnc \
@@ -9,9 +10,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         novnc \
         websockify \
         supervisor \
-        # Common dependencies for GUI apps (like Chrome/Firefox)
-        libnss3 \
-        libgbm1 \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/log/supervisor /tmp/log
