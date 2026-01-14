@@ -14,7 +14,7 @@ FPS = 30
 STATUS_HEIGHT = 50  # Added: Extra height for the bottom status bar
 
 # Colors
-BACKGROUND_COLOR = (50,60,70)
+BACKGROUND_COLOR = (50, 60, 70)
 TEXT_COLOR = (0, 0, 0)
 EMPTY_COLOR = (50, 50, 50)
 STATUS_LINE_COLOR = (255, 255, 255)
@@ -114,7 +114,11 @@ class FifteenVisualizer:
                 pygame.draw.rect(self.screen, EMPTY_COLOR, tile_rect, border_radius=8)
             else:
                 expected_number = i + 1
-                color = TILE_COLOR_CORRECT if tile_number == expected_number else TILE_COLOR_WRONG
+                color = (
+                    TILE_COLOR_CORRECT
+                    if tile_number == expected_number
+                    else TILE_COLOR_WRONG
+                )
                 pygame.draw.rect(self.screen, color, tile_rect, border_radius=8)
 
                 text_surf = self.font.render(str(tile_number), True, TEXT_COLOR)
@@ -137,7 +141,9 @@ class FifteenVisualizer:
             score_surf = self.score_font.render(str(score), True, SCORE_COLOR)
 
             # Position in lower-left corner with small padding
-            score_rect = score_surf.get_rect(bottomleft=(target_rect.left + 5, target_rect.bottom - 2))
+            score_rect = score_surf.get_rect(
+                bottomleft=(target_rect.left + 5, target_rect.bottom - 2)
+            )
 
             self.screen.blit(score_surf, score_rect)
 
@@ -183,10 +189,10 @@ class FifteenVisualizer:
                     if self.solution:
                         self.is_playing = not self.is_playing
                 elif event.key == pygame.K_j:
-                    self.solution_index = len(self.solution)-1
-                    print(f'Jumped to {self.solution_index}')
+                    self.solution_index = len(self.solution) - 1
+                    print(f"Jumped to {self.solution_index}")
                 elif event.key == pygame.K_c:
-                    print (self.puzzle.board, file=sys.stderr)
+                    print(self.puzzle.board, file=sys.stderr)
 
                 # Standard Controls
                 elif event.key == pygame.K_SPACE:

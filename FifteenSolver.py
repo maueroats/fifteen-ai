@@ -62,7 +62,7 @@ class FifteenSolver:
             cost_estimate, cost_known, move_from, (original_board, move_to) = heapq.heappop(candidates)
 
             ob = tuple(original_board)
-            if ob in results and cost_known >= results[tuple(ob)]:
+            if ob in results and cost_known >= results[ob]:
                 continue
 
             results[ob] = cost_known
