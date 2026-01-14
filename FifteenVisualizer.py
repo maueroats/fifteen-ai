@@ -14,7 +14,7 @@ FPS = 30
 STATUS_HEIGHT = 50  # Added: Extra height for the bottom status bar
 
 # Colors
-BACKGROUND_COLOR = (30, 30, 30)
+BACKGROUND_COLOR = (50,60,70)
 TEXT_COLOR = (0, 0, 0)
 EMPTY_COLOR = (50, 50, 50)
 STATUS_LINE_COLOR = (255, 255, 255)
