@@ -12,7 +12,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         supervisor \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /var/log/supervisor /tmp/log
+RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /tmp/log
 
 #libasound2 
 
