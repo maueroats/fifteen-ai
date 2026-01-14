@@ -1,0 +1,6 @@
+#!/bin/bash
+
+umask 077
+mkdir -p ~/.vnc
+x11vnc -storepasswd "${VNC_PASSWORD}" ~/.vnc/passwd
+supervisord -c .devcontainer/supervisord.conf

@@ -8,15 +8,19 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         fluxbox \
         novnc \
         websockify \
+        supervisor \
         # Common dependencies for GUI apps (like Chrome/Firefox)
         libnss3 \
         libgbm1 \
         && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir -p /var/log/supervisor /tmp/log
+
 #libasound2 
 
 # 2. Install uv (done byu features in devcontainer.json)
 # COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+# See features in devcontainer.json
 
 # 3. Setup noVNC workspace
 # Link noVNC to the default location websockify expects
@@ -25,6 +29,7 @@ RUN ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html
 # 4. Environment variables for X11
 ENV DISPLAY=:0
 ENV RESOLUTION=1280x720x24
+ENV LOGDIR=/tmp/log
 
 WORKDIR /workspaces/app
 
@@ -32,7 +37,7 @@ WORKDIR /workspaces/app
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-COPY debugging.sh /usr/local/bin/debugging.sh
-RUN chmod +x /usr/local/bin/debugging.sh 
+COPY entrysupervisor /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrysupervisor
 
 # ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
